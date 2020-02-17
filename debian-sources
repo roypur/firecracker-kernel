@@ -1,0 +1,5 @@
+deb https://mirror.nforce.com/debian buster main
+deb-src https://mirror.nforce.com/debian buster main
+
+deb https://mirror.nforce.com/debian buster-updates main
+deb-src https://mirror.nforce.com/debian buster-updates main
