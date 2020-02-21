@@ -1,25 +1,12 @@
-FROM debian:buster-slim
-
-RUN ["mkdir", "-p", "/build"]
-WORKDIR /build
-
-RUN ["apt-get", "--yes", "update"]
-RUN ["apt-get", "--yes", "install", "ca-certificates"]
-
-COPY ["debian-sources", "/etc/apt/sources.list"]
-
-RUN ["apt-get", "--yes", "update"]
-RUN ["apt-get", "--yes", "install", "build-essential", "curl", "git"]
-RUN ["apt-get", "--yes", "build-dep", "linux"]
-RUN ["apt-get", "--yes", "upgrade"]
-
-RUN ["git", "clone", "--depth", "1", "--single-branch", "--branch", "linux-5.4.y", "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git", "/build/linux"]
-
+FROM debian:bullseye-slim
 WORKDIR /build/linux
 
-RUN ["curl", "--output", "/build/linux/.config", "https://raw.githubusercontent.com/firecracker-microvm/firecracker/master/resources/microvm-kernel-config"]
-RUN ["make", "olddefconfig"]
+COPY ["build", "/build"]
 
-RUN ["make", "-j", "8", "vmlinux"]
+RUN ["sh", "/build/setup.sh"]
 
-ENTRYPOINT ["cp", "/build/linux/vmlinux", "/out/vmlinux.bin"]
+ENV KERNEL_SOURCE="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.21.tar.xz"
+
+RUN ["sh", "/build/compile.sh"]
+
+ENTRYPOINT ["cp", "/build/vmlinux.bin", "/out/vmlinux.bin"]
