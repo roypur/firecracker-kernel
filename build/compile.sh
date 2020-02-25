@@ -1,4 +1,5 @@
 #!/bin/sh
+export DEBIAN_FRONTEND=noninteractive
 
 apt-get --yes update
 apt-get --yes upgrade
