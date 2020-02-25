@@ -1,5 +1,8 @@
 #!/bin/sh
 
+apt-get --yes update
+apt-get --yes upgrade
+
 curl --output /build/archive/kernel.tar.xz "${KERNEL_SOURCE}"
 tar --extract --file=/build/archive/kernel.tar.xz --strip-components=1
 
@@ -10,5 +13,6 @@ make -j 8 vmlinux
 
 cp /build/linux/vmlinux /build/vmlinux.bin
 
-rm -rf /build/linux
-rm -rf /build/archive
+rm -rf '/var/cache'
+rm -rf '/build/linux'
+rm -rf '/build/archive'
