@@ -5,7 +5,7 @@ COPY ["build", "/build"]
 
 RUN ["sh", "/build/setup.sh"]
 
-ENV KERNEL_SOURCE="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.22.tar.xz"
+ENV KERNEL_SOURCE="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.23.tar.xz"
 
 RUN ["sh", "/build/compile.sh"]
 
