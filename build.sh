@@ -2,5 +2,9 @@
 dir=$(dirname $(realpath $0))
 mkdir -p "${dir}/out"
 
-docker build --tag firecracker-kernel-builder ${dir}
-docker run --user "$(id -u):$(id -g)" --volume "${dir}/out:/out" -it firecracker-kernel-builder
+docker build --tag 'firecracker-kernel-builder' "${dir}"
+id=$(docker create 'firecracker-kernel-builder')
+docker start --attach ${id}
+
+docker cp "${id}:/build/linux/vmlinux.bin" "${dir}/out/vmlinux.bin"
+docker rm "${id}"

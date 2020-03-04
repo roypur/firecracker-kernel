@@ -1,12 +1,14 @@
 FROM debian:bullseye-slim
 WORKDIR /build/linux
-
-COPY ["build", "/build"]
+COPY ["build/setup.sh", "/build/setup.sh"]
+COPY ["build/apt-conf", "/etc/apt/apt.conf.d/apt-conf"]
+COPY ["build/sources.list", "/build/sources.list"]
 
 RUN ["sh", "/build/setup.sh"]
 
+COPY ["build/compile.sh", "/build/compile.sh"]
+RUN ["chmod", "755", "/build/compile.sh"]
+
 ENV KERNEL_SOURCE="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.23.tar.xz"
 
-RUN ["sh", "/build/compile.sh"]
-
-ENTRYPOINT ["cp", "/build/vmlinux.bin", "/out/vmlinux.bin"]
+ENTRYPOINT ["/build/compile.sh"]
