@@ -12,5 +12,6 @@ make olddefconfig
 
 sed -r -i 's/(.*)MODULE(.*)=y/\1MODULE\2=n/g' '/build/linux/.config'
 sed -r -i 's/(.*)MODVERSION(.*)=y/\1MODVERSION\2=n/g' '/build/linux/.config'
+sed -r -i 's/(.*)=m/\1=n' '/build/linux/.config'
 
 make -j 8 vmlinux
