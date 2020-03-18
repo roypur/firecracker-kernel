@@ -2,7 +2,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get --yes update
-apt-get --yes upgrade
+apt-get --yes dist-upgrade
 
 curl --output /build/archive/kernel.tar.xz "${KERNEL_SOURCE}"
 tar --extract --file=/build/archive/kernel.tar.xz --strip-components=1
@@ -12,6 +12,6 @@ make olddefconfig
 
 sed -r -i 's/(.*)MODULE(.*)=y/\1MODULE\2=n/g' '/build/linux/.config'
 sed -r -i 's/(.*)MODVERSION(.*)=y/\1MODVERSION\2=n/g' '/build/linux/.config'
-sed -r -i 's/(.*)=m/\1=n' '/build/linux/.config'
+sed -r -i 's/(.*)=m/\1=n/g' '/build/linux/.config'
 
 make -j 8 vmlinux

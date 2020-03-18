@@ -14,6 +14,6 @@ cp /build/sources.list /etc/apt/sources.list
 apt-get update
 apt-get build-dep linux
 apt-get install curl tar
-apt-get upgrade
+apt-get dist-upgrade
 
 rm -rf /var/cache/*
