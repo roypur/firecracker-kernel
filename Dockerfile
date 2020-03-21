@@ -1,8 +1,7 @@
-FROM debian:bullseye-slim
+FROM alpine:edge
 WORKDIR /build/linux
 COPY ["build/setup.sh", "/build/setup.sh"]
-COPY ["build/apt-conf", "/etc/apt/apt.conf.d/apt-conf"]
-COPY ["build/sources.list", "/build/sources.list"]
+COPY ["build/packages.txt", "/build/packages.txt"]
 
 RUN ["sh", "/build/setup.sh"]
 

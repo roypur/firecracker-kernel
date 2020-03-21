@@ -1,8 +1,5 @@
-#!/bin/sh
-export DEBIAN_FRONTEND=noninteractive
-
-apt-get --yes update
-apt-get --yes dist-upgrade
+#!/usr/bin/env bash
+apk upgrade --no-cache
 
 curl --output /build/archive/kernel.tar.xz "${KERNEL_SOURCE}"
 tar --extract --file=/build/archive/kernel.tar.xz --strip-components=1

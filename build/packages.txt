@@ -1,0 +1,12 @@
+alpine-sdk
+bash
+bc
+bison
+diffutils
+elfutils-dev
+flex
+gmp-dev
+linux-headers
+openssl-dev
+perl
+sed

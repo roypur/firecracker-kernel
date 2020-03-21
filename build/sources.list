@@ -1,5 +1,0 @@
-deb https://mirror.nforce.com/debian bullseye main
-deb-src https://mirror.nforce.com/debian bullseye main
-
-deb https://mirror.nforce.com/debian bullseye-updates main
-deb-src https://mirror.nforce.com/debian bullseye-updates main
