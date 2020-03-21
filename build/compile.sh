@@ -5,6 +5,9 @@ curl --output /build/archive/kernel.tar.xz "${KERNEL_SOURCE}"
 tar --extract --file=/build/archive/kernel.tar.xz --strip-components=1
 
 curl --silent --output /build/linux/.config 'https://raw.githubusercontent.com/firecracker-microvm/firecracker/master/resources/microvm-kernel-config'
+sed -r -i '/^CONFIG_EFI=.$/d' '/build/linux/.config'
+echo 'CONFIG_EFI=y' >> /build/linux/.config
+
 make olddefconfig
 
 sed -r -i 's/(.*)MODULE(.*)=y/\1MODULE\2=n/g' '/build/linux/.config'
