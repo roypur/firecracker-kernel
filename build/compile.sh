@@ -4,9 +4,7 @@ apk upgrade --no-cache
 curl --output /build/archive/kernel.tar.xz "${KERNEL_SOURCE}"
 tar --extract --file=/build/archive/kernel.tar.xz --strip-components=1
 
-curl --silent --output /build/linux/.config 'https://raw.githubusercontent.com/firecracker-microvm/firecracker/master/resources/microvm-kernel-config'
-sed -r -i '/^CONFIG_EFI=.$/d' '/build/linux/.config'
-echo 'CONFIG_EFI=y' >> /build/linux/.config
+curl --silent --output /build/linux/.config 'https://raw.githubusercontent.com/firecracker-microvm/firecracker/master/resources/microvm-kernel-x86_64.config'
 
 make olddefconfig
 
